@@ -1,10 +1,17 @@
 package br.com.alurasenac.farmacia_spring.orm;
 
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "produtos")
 public class produto {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
     private String descricao;
     private double preco;
+    @ManyToOne
     private Fabricante fabricante;
 
     public int getId() {

@@ -1,6 +1,12 @@
 package br.com.alurasenac.farmacia_spring.orm;
 
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "fabricantes")
 public class Fabricante {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String nome;
 
