@@ -26,7 +26,8 @@ public class CrudProdutoService {
             System.out.println("Digite a opção de Produto desejada:");
             System.out.println("1 - Cadastrar Produtos");
             System.out.println("2 - Exibir lista de Produtos");
-            System.out.println("3 - sair");
+            System.out.println("3 - Atualizar Produto");
+            System.out.println("4 - sair");
 
             int action = scanner.nextInt();
 
@@ -37,7 +38,9 @@ public class CrudProdutoService {
                 case 2:
                     exibirProdutos();
                     break;
-
+                case 3:
+                    atualizarProduto(scanner);
+                    break;
                 default:
                     system = false;
                     break;
@@ -80,5 +83,28 @@ public class CrudProdutoService {
     private void exibirProdutos(){
         Iterable<Produto> lista = produtoRepository.findAll();
         lista.forEach(System.out::println);
+    }
+
+    private void atualizarProduto(Scanner scanner){
+        System.out.println("Digite o ID do produto.");
+        int id = scanner.nextInt();
+
+        Optional<Produto> profutoOptional = produtoRepository.findById(id);
+
+        if(profutoOptional.isEmpty()) {
+            System.out.println("Produto não encontrado");
+        }else {
+            Produto produto = profutoOptional.get();
+
+            System.out.println("Digite a descrição do produto");
+            String descricao = scanner.next();
+            descricao +=scanner.nextLine();
+            produto.setDescricao(descricao);
+
+            produtoRepository.save(produto);
+            System.out.println("Produto atualizado com sucesso");
+        }
+
+
     }
 }
