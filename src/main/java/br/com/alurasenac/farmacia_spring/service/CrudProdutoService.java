@@ -25,13 +25,17 @@ public class CrudProdutoService {
         while (system) {
             System.out.println("Digite a opção de Produto desejada:");
             System.out.println("1 - Cadastrar Produtos");
-            System.out.println("2 - sair");
+            System.out.println("2 - Exibir lista de Produtos");
+            System.out.println("3 - sair");
 
             int action = scanner.nextInt();
 
             switch (action) {
                 case 1:
                     salvar(scanner);
+                    break;
+                case 2:
+                    exibirProdutos();
                     break;
 
                 default:
@@ -71,5 +75,10 @@ public class CrudProdutoService {
             System.out.println("Produto salvo com sucesso");
         }
 
+    }
+
+    private void exibirProdutos(){
+        Iterable<Produto> lista = produtoRepository.findAll();
+        lista.forEach(System.out::println);
     }
 }

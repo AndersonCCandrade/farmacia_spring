@@ -1,6 +1,8 @@
 package br.com.alurasenac.farmacia_spring.model;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 @Entity
 @Table(name = "produtos")
@@ -52,5 +54,15 @@ public class Produto {
 
     public void setFabricante(Fabricante fabricante) {
         this.fabricante = fabricante;
+    }
+
+    @Override
+    public String toString() {
+        return "Produto{" +
+                " ID: " + id +
+                ", Nome: " + nome +
+                ", Descrição: " + descricao +
+                ", Preço: " + preco +
+                ", Fabricante: " + fabricante.getNome();
     }
 }

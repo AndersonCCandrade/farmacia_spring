@@ -4,6 +4,7 @@ import br.com.alurasenac.farmacia_spring.model.Fabricante;
 import br.com.alurasenac.farmacia_spring.repository.FabricanteRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Scanner;
 @Service
 public class CrudFabricanteService {
@@ -21,13 +22,17 @@ public class CrudFabricanteService {
 
             System.out.println("Digite a opção de fabricante desejada:");
             System.out.println("1 - Cadastrar fabricante");
-            System.out.println("2 - sair");
+            System.out.println("2 - Exibir lista de fabricantes");
+            System.out.println("3 - sair");
 
             int action = scanner.nextInt();
 
             switch (action) {
                 case 1:
                     cadastrar(scanner);
+                    break;
+                case 2:
+                    exibirFabricantes();
                     break;
                 default:
                     system = false;
@@ -44,6 +49,11 @@ public class CrudFabricanteService {
         fabricante.setNome(nome);
         fabricanteRepository.save(fabricante);
         System.out.println("Fabricante salvo com sucesso");
+    }
+
+    private void exibirFabricantes(){
+        Iterable<Fabricante> lista = fabricanteRepository.findAll();
+        lista.forEach(System.out::println);
     }
 
 
