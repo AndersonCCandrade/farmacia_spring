@@ -1,4 +1,4 @@
-package br.com.alurasenac.farmacia_spring.orm;
+package br.com.alurasenac.farmacia_spring.model;
 
 import jakarta.persistence.*;
 
