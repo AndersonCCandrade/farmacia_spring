@@ -6,6 +6,7 @@ import br.com.alurasenac.farmacia_spring.repository.FabricanteRepository;
 import br.com.alurasenac.farmacia_spring.repository.ProdutoRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.Scanner;
 
@@ -27,7 +28,8 @@ public class CrudProdutoService {
             System.out.println("1 - Cadastrar Produtos");
             System.out.println("2 - Exibir lista de Produtos");
             System.out.println("3 - Atualizar Produto");
-            System.out.println("4 - sair");
+            System.out.println("4 - Deletar Produto");
+            System.out.println("5 - Sair");
 
             int action = scanner.nextInt();
 
@@ -40,6 +42,9 @@ public class CrudProdutoService {
                     break;
                 case 3:
                     atualizarProduto(scanner);
+                    break;
+                case 4:
+                    deletarProduto(scanner);
                     break;
                 default:
                     system = false;
@@ -104,7 +109,18 @@ public class CrudProdutoService {
             produtoRepository.save(produto);
             System.out.println("Produto atualizado com sucesso");
         }
+    }
 
+    private void deletarProduto(Scanner scanner) {
+        System.out.println("Digite id do Produto");
+        int id = scanner.nextInt();
+
+        if(produtoRepository.findById(id).isEmpty()){
+            System.out.println("Produto não encontrado");
+        }else {
+            produtoRepository.deleteById(id);
+            System.out.println("Produto deletado com sucesso");
+        }
 
     }
 }

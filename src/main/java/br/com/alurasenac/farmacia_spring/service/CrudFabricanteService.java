@@ -46,6 +46,7 @@ public class CrudFabricanteService {
         }
     }
 
+
     private void cadastrar(Scanner scanner) {
         System.out.println("Digite o nome do fabricante");
         String nome = scanner.next();
@@ -84,7 +85,5 @@ public class CrudFabricanteService {
         }
 
     }
-
-
 
 }
